@@ -1,0 +1,28 @@
+Package: GABB
+Title: Help For Occasional R User Faced With RDA And PCA Analyses
+Version: 0.0.0.9004
+Authors@R: 
+    person("Gregoire", "Bianchetti", , "auguste.blam@gmail.com", role = c("aut", "cre"))
+Description: The GABB package helps occasional R user for the preparation of the data, synthesis and enhanced graphical visualization for redundancy analysis and principal component analysis analyses.
+  Inputs are : data frame, redundancy analysis (package vegan) and principal component analysis (package FactoMineR) objects.
+  Outputs are : synthesized results of redundancy analysis, displayed in console and saved in tables ; Displayed and saved objects of principal component analysis graphic visualization of individuals and variables projections with multiple graphic parameters.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.3
+Language: en
+Suggests: 
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
+Imports: 
+    dplyr,
+    egg (>= 0.4.5),
+    ggforce,
+    ggplot2,
+    ggplotify,
+    ggpubr,
+    Hotelling,
+    pheatmap,
+    RVAideMemoire,
+    stats,
+    vegan
