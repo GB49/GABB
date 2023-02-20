@@ -23,7 +23,7 @@ You can install the development version of GABB like so:
 
 ## Example
 
-This is a basic example which shows you how use GABB with the mtcars data.set:
+This is a basic example which showing how to use GABB with the mtcars data.set:
 
 ``` r
 library(GABB)
