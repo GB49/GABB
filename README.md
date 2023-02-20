@@ -10,11 +10,13 @@ For PCA : the package GABB goal is to facilitate and enhance the PCA graphic con
 
 Graphics relies on ggplot2, ggplotify, ggforce and ggpubr packages. 
 
-Created GABB plots are saved as grob/ggplot objects, so, users can modify them with classic ggplot2 options.
-- Creation of barycenters and confidence intervall ellipses based on up to 3 factors
-- Displaying of the heatmap of PCA variable parameters correlation with dimensions 
+Created GABB plots for RDA and PCA with multiple options : 
+- Displaying the PCA individual with barycenters and confidence intervall ellipses calculated on up to 3 factors
+- Displaying of the heatmap of PCA variable desired parameters (correlation, contribution, cos2, coordinates) correlation with dimensions 
 - Displaying of the RDA table analysis
 - ...
+
+Created graphics are saved as grob/ggplot objects, so, users can modify them with classic ggplot2 options.
 
 ## Installation
 
