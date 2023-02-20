@@ -73,3 +73,4 @@ PCA_RDA_graphics(data = my.data, factor.names = c("vs", "am", "gear"),
 
 
 
+![mtcars GABB ex](https://user-images.githubusercontent.com/46051356/220125152-5216451d-01c0-43ca-a8b7-b2c15f735407.png)
