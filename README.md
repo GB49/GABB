@@ -1,27 +1,19 @@
+
 # GABB
-R package for RDA and PCA analyses help, from data preparation to nice graphics
+
+<!-- badges: start -->
+<!-- badges: end -->
 
 The goal of GABB package is to help the casual R users to perform and synthesize RDA and PCA analyses, from data set preparation to graphic visualization.
-
-Package GABB do not "re invent the wheel". Main inputs must be RDA and PCA objetcs created with vegan and FactoMiner respective packages.
-
+Ppackage GABB do not "re invent the wheel". Main inputs must be RDA and PCA objetcs created with vegan and FactoMiner respective packages.
 For RDA : the package GABB goal is to check of data conformity for RDA and the facilitate the displaying/saving of RDA outputs.
 For PCA : the package GABB goal is to facilitate and enhance the PCA graphic construction and display of individual/variable projections.
-
 Graphics relies on ggplot2, ggplotify, ggforce and ggpubr packages. 
-
-Created GABB plots for RDA and PCA with multiple options : 
-- Displaying the PCA individual with barycenters and confidence intervall ellipses calculated on up to 3 factors
-- Displaying of the heatmap of PCA variable desired parameters (correlation, contribution, cos2, coordinates) correlation with dimensions 
-- Displaying of the RDA table analysis
-- ...
-
-Created graphics are saved as grob/ggplot objects, so, users can modify them with classic ggplot2 options.
+Created GABB plots are saved as grob/ggplot objects, so, users can modify them with classic ggplot2 options.
 
 ## Installation
 
 You can install the development version of GABB like so:
-Here from Github or:
 
 ``` r
 # install.package("GABB")
@@ -83,4 +75,17 @@ PCA_RDA_graphics(data = my.data, factor.names = c("vs", "am", "gear"),
 
 
 
-![mtcars GABB ex](https://user-images.githubusercontent.com/46051356/220125152-5216451d-01c0-43ca-a8b7-b2c15f735407.png)
+
+
+
+
+
+
+
+
+
+
+
+
+```
+
