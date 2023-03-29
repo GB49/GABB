@@ -23,7 +23,7 @@ You can install the development version of GABB like so:
 
 ## Example
 
-This is a basic example which shows you how use GABB with the mtcars data.set:
+Example of GABB functions on R based mtcars dataset:
 
 ``` r
 library(GABB)
@@ -31,61 +31,58 @@ library(vegan)
 library(FactoMiner)
 
 
-#Example of GABB package pipeline with the base data.set "mtcars" 
+## Example of GABB package pipeline with the base data.set "mtcars" 
 my.data <- mtcars
 
-#Data preparation for RDA and PCA : tranformation and scaling of numeric/quantitative variables
+
+## Data preparation for RDA and PCA : tranformation and scaling of numeric/quantitative variables
 
 prep_data(data = my.data, quantitative_columns = c(1:7), transform_data_method = "log", scale_data = T)
 
+
+## Check that factor identified meet RDA requirements
 check_data_for_RDA(data_quant = data_quant,initial_data = my.data,factor_names = c("vs", "am", "gear", "carb"))
-# => the data set factor carb not suited for RDA analysis
-# Rough simple solution : not considering it
+  # => factor "carb" doesn't meet RDA requirements (pval < 0.05)
+  # simple solution : not considering it
 
 check_data_for_RDA(data_quant = data_quant,initial_data = my.data,factor_names = c("vs", "am", "gear"))
-#Check passed. Go for RDA.
+  # all considered factors meet RDA requirements
 
-#Performing simple RDA analysis
+
+## Performing RDA
 library(vegan)
-my.RDA <- vegan::rda(data_quant~vs+am+gear, data=my.data)
+my.rda <- vegan::rda(data_quant~vs+am+gear, data=my.data)
 
-#Display and save RDA outputs
+
+## Display and save RDA output synthesis
 RDA_outputs_synthesis(RDA = my.RDA, MVAsynth = T, MVAanova = F, RDATable = T)
-# => the factor gear is not significant for the model residual variance modulations.
-# For the following graphic displays, it will be considered as low importance factor.
+  # => factor "gear" and factor interactions are not significant for the variation of model residual variance
 
-#Performing simple PCA analysis
+
+## Performing PCA
 library(FactoMineR)
-my.PCA <- FactoMineR::PCA(X = data_quant, scale.unit = F, ncp = 5, graph = F) 
+my.pca <- FactoMineR::PCA(X = data_quant) 
 
-#Create, display and save graphics of PCA individual and variable projections.
-PCA_RDA_graphics(data = my.data, factor.names = c("vs", "am", "gear"), 
-                 PCA.object = my.PCA, Dim.a = 1, Dim.b = 2,
-                 Barycenter = T, Segments = T, Barycenter.min.size = 2, Ind.min.size = 1,
-                 Segment.line.type = 2,Segment.line.size = 0.1,
-                 Ellipse.IC.95 = T, Ellipse.Fac.1 = "vs", Ellipse.Fac.2 = "am",
+
+## Create, display and save graphic output of individual and variable PCA
+
+#Basic output with minimum required parameters
+PCA_RDA_graphics(complete.data.set = initial_data_with_quant_transformed, PCA.object = my.pca, factor.names = c("vs", "am", "gear", "carb"))
+
+#Advanced outputs (image below)
+PCA_RDA_graphics(complete.data.set = initial_data_with_quant_transformed, PCA.object = my.pca, factor.names = c("vs", "am", "gear", "carb"),
+                 Barycenter = TRUE, Segments = TRUE, Ellipse.IC.95 = TRUE,
+                 Barycenter.Ellipse.Fac1 = "vs", Barycenter.Ellipse.Fac2 = "am",
                  factor.colors = "vs", factor.shapes = "am",
-                 Var.circle = T, Var.circle.size = 2, Var.label.size = 5,
-                 Overlaying.graphs = F, width.PCA.ind.graph = 0.6, width.PCA.var.graph = 0.4, 
-                 Heat.map.graph = T, width.heat.map.graph = 0.3,var.parameter.heat.map = "cor",
-                 Dims.heat.map = c(1,2),Display.cell.values.heat.map = T,Cluster.col.heat.map = T,Cluster.row.heat.map = T,
-                 RDA.table.graph = T,RDA.table.graph.height = 0.3 )
-  
-``` 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                 Barycenter.factor.col = "vs", Barycenter.factor.shape = "am",
+                 Heat.map.graph = TRUE, Dims.heat.map = c(1:5), Cluster.row.heat.map = TRUE,
+                 RDA.object = my.rda, RDA.table.graph = TRUE, RDA.table.graph.height = 10)
 ```
+![Rplot01](https://user-images.githubusercontent.com/46051356/228469369-3cb8e6eb-d96e-4c3d-b1da-6f0da619b9d2.png)
+```
+
+
+
+
+
 
