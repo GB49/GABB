@@ -20,11 +20,10 @@ Outputs are saved in a data frame and conclusions are displayed in console.
 This function check if the factor variables used for RDA fit the required conditions.
 Results are grouped and conclusions go / no go are displayed in the console and saved in a table.
 This function is mainly derived from the explanations of Maxime Herve
-https://www.maximeherve.com/r-et-statistiques
+\url{https://www.maximeherve.com/r-et-statistiques}
 }
 \examples{
-\dontrun{
-check_data_for_RDA(mtcars_quant, mtcars, c("gear","carb"))
-}
+
+check_data_for_RDA(mtcars[,1:7], mtcars, c("gear","carb"))
 
 }

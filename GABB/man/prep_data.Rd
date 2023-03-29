@@ -23,8 +23,8 @@ This function helps user to transform and scale quantitative defined data (colum
 for better PCA and RDA outputs.
 }
 \examples{
-\dontrun{
+
 prep_data(mtcars, c(1:7), "log", TRUE)
-}
+
 
 }

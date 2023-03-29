@@ -24,10 +24,12 @@ This function is mainly derived from the explanations of Maxime Herve
 \url{https://www.maximeherve.com/r-et-statistiques}
 }
 \examples{
-\dontrun{
-RDA_outputs_synthesis(RDA, TRUE, TRUE, TRUE)
 
-}
+library(vegan)
+my.RDA <- vegan::rda(mtcars[,1:7]~vs+am+gear, data=mtcars)
+RDA_outputs_synthesis(RDA = my.RDA, MVAsynth = TRUE, MVAanova = FALSE, RDATable = TRUE)
+
+
 
 
 }
