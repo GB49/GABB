@@ -14,39 +14,35 @@
 #' @export
 #'
 #' @examples
-#' \dontrun{
-#' RDA_outputs_synthesis(RDA, TRUE, TRUE, TRUE)
 #'
-#' }
+#' library(vegan)
+#' my.RDA <- vegan::rda(mtcars[,1:7]~vs+am+gear, data=mtcars)
+#' RDA_outputs_synthesis(RDA = my.RDA, MVAsynth = TRUE, MVAanova = FALSE, RDATable = TRUE)
+#'
+#'
 #'
 #'
 
 RDA_outputs_synthesis <- function(RDA, MVAsynth, MVAanova, RDATable){
 
-  if(MVAsynth==T){
-    cat("calling function MVA.synth(RDA)")
-    cat("\n")
+  if(MVAsynth==TRUE){
+    message("Calling MVA.synth() function")
     print(RVAideMemoire::MVA.synt(RDA))
-    cat("\n")
-    cat("\n")
+
   }
 
-  if(MVAanova==T){
-    cat("calling function MVA.anova(RDA)")
-    cat("\n")
+  if(MVAanova==TRUE){
+    message("calling function MVA.anova(RDA)")
     print(RVAideMemoire::MVA.anova(RDA))
-    cat("\n")
-    cat("\n")
+
   }
 
-  if(RDATable==T){
+  if(RDATable==TRUE){
 
-    cat("Calculation of variance % associated with each RDA factor, considering unconstrained total variance")
-    cat("\n")
-
+    message("Calculation of variance % associated with each RDA factor, considering unconstrained total variance")
     Table_RDA <- as.data.frame(RVAideMemoire::MVA.anova(RDA))
-    Table_RDA$Unconstrained_variance_percent <- round((100*Table_RDA$Variance)/(sum(Table_RDA$Variance)),2)
-    Table_RDA$Sign_pval <- NA
+    Table_RDA$Unconstrained.var.percent <- round((100*Table_RDA$Variance)/(sum(Table_RDA$Variance)),2)
+    Table_RDA$Sign.p.val <- NA
 
     for (i in 1:(nrow(Table_RDA)-1)){
 
@@ -58,17 +54,13 @@ RDA_outputs_synthesis <- function(RDA, MVAsynth, MVAanova, RDATable){
 
 
     }
-
+    names(Table_RDA)[3] <- "F.val"
     Table_RDA$Variance <- round(Table_RDA$Variance,2)
-    Table_RDA$F <- round(Table_RDA$F,2)
+    Table_RDA$F.val <- round(Table_RDA$F.val,2)
 
     anovaattr <- RVAideMemoire::MVA.anova(RDA)
     anovaattr <- attr(anovaattr, "heading")
-
-    cat(anovaattr)
-    cat("\n")
-    cat("\n")
-
+    message(anovaattr)
     print(Table_RDA)
 
     Table_RDA <<- Table_RDA

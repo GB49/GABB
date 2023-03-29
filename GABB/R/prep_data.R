@@ -12,9 +12,9 @@
 #' @export
 #'
 #' @examples
-#'\dontrun{
+#'
 #' prep_data(mtcars, c(1:7), "log", TRUE)
-#'}
+#'
 #'
 
 prep_data <- function(data,

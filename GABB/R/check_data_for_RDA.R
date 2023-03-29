@@ -3,7 +3,7 @@
 #' This function check if the factor variables used for RDA fit the required conditions.
 #' Results are grouped and conclusions go / no go are displayed in the console and saved in a table.
 #' This function is mainly derived from the explanations of Maxime Herve
-#' https://www.maximeherve.com/r-et-statistiques
+#' \url{https://www.maximeherve.com/r-et-statistiques}
 #'
 #'
 #' @param data_quant Data frame of numeric values, generally transformed and scalled
@@ -14,9 +14,8 @@
 #' @export
 #'
 #' @examples
-#' \dontrun{
-#' check_data_for_RDA(mtcars_quant, mtcars, c("gear","carb"))
-#' }
+#'
+#' check_data_for_RDA(mtcars[,1:7], mtcars, c("gear","carb"))
 #'
 
 check_data_for_RDA <- function(data_quant, initial_data, factor_names){
@@ -42,17 +41,14 @@ check_data_for_RDA <- function(data_quant, initial_data, factor_names){
       attr(rda_check, "heading") <- paste(factor_considered2,"Response: Distances", sep="\n")
 
       print(rda_check)
-      cat("\n")
 
       if(rda_check[1,5] < 0.05){
 
-        cat(paste("Warnings, variance-covariance matrix of ", factor_considered, " modalities are NOT homogeneous !", sep=""))
-        cat("\n")
+        message(paste("Variance-covariance matrix of ", factor_considered, " modalities are NOT homogeneous ! (p.val < 0.05)", sep=""))
 
       }else if(rda_check[1,5] >= 0.05){
 
-        cat(paste("OK for RDA, variance-covariance matrix of ", factor_considered, "modalities are homogeneous", sep=""))
-        cat("\n")
+        message(paste("Variance-covariance matrix of ", factor_considered, " modalities are homogeneous (p.val >= 0.05)", sep=""))
 
       }else{NULL}
 
@@ -61,9 +57,8 @@ check_data_for_RDA <- function(data_quant, initial_data, factor_names){
 
     }else if(nb_modalities <= 1){
 
-      cat(paste("Factor: ", factor_considered ," => only one modality", sep=""))
-      cat(paste("Warnings: Test for homogeneity only applicable to two or more groups", sep=""))
-      cat("\n")
+      message(paste("Factor: ", factor_considered ," => only one modality", sep=""))
+      message(paste("Test for homogeneity only applicable to two or more groups", sep=""))
 
     }else{NULL}
 
@@ -81,15 +76,12 @@ check_data_for_RDA <- function(data_quant, initial_data, factor_names){
 
   if(nrow(conclusion_rda_check)==0){
 
-    cat("\n")
-    cat("All variance-covariance matrix of factors modalities are considered homogeneous (pval > 0.05) => Ok for RDA")
+    message("All variance-covariance matrix of factors modalities are considered homogeneous (pval >= 0.05) => Ok for RDA")
 
   }else if (nrow(conclusion_rda_check)>0){
 
-    cat("\n")
-    cat("Warnings ! For at least one factor, variance-covariance matrix of modalities are NOT considered homogeneous (pval < 0.05) => NOT ok for RDA")
-    cat("\n")
-    cat("Try to solve the problem with : data transformation, balance dataset, removing outlier, removing involved factor")
+    message("For at least one factor, variance-covariance matrix of modalities are NOT considered homogeneous (pval < 0.05) => NOT ok for RDA")
+    message("Try to solve the problem through: data transformation, balancing dataset, removing outlier, removing involved factor")
 
   }else{NULL}
 
