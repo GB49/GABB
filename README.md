@@ -28,7 +28,7 @@ Example of GABB functions on R based mtcars dataset:
 ``` r
 library(GABB)
 library(vegan)
-library(FactoMiner)
+library(FactoMineR)
 
 
 ## Example of GABB package pipeline with the base data.set "mtcars" 
